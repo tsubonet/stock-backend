@@ -3,9 +3,26 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
+
+    # url = ['https://yahoo.co.jp']
+    #解析した画像url入れておく配列を作成する
+    array = []
+    #取得したい画像のあるページのurlを配列に入れておく
+    # urls = %w(url)
+    urls = ['https://yahoo.co.jp']
+    #そしてurlを展開する。展開したurlはNokogiriによって分解され、xpathなりcssで要素を指定できるようになる
+    urls.each do |url|
+      doc = Nokogiri::HTML(open(url))
+    #今回は欲しい画像がimgタグのなかのｓｒｃにあったのでこのようになった。取得したurlを配列に格納しviewで表示するための処理を書いていく。
+      doc.css('img').each do |photo|
+        array << photo[:src]
+      end
+    end
+
+
     @users = User.all
 
-    render json: @users
+    render json: [@users, array]
   end
 
   # GET /users/1
