@@ -27,7 +27,7 @@ class Api::StocksController < ApplicationController
       stock_info[:time] = node.css('dd[@class="yjSb real"]').css('span').inner_text
       stock_info[:company] = node.css('h1').inner_text
       stock_info[:price] = node.css('td[@class="stoksPrice"]').inner_text
-      stock_info[:change] = node.css('span[@class="icoUpGreen yjMSt"]').inner_text
+      stock_info[:change] = node.css('table[@class="stocksTable"]').css('span[2]').inner_text
     end
 
     doc.xpath('//div[@class="padT12 centerFi marB10"]').each do |node|
