@@ -34,7 +34,8 @@ class UsersController < ApplicationController
     # doc.xpath('//h1[@class="searchResult_itemTitle"]').each do |node|
     #   array << node.css('a').inner_text
     # end
-
+    
+    # require 'open-uri'
 
     url = 'https://stocks.finance.yahoo.co.jp/stocks/chart/?code=3092.T&ct=b'
 
@@ -48,7 +49,7 @@ class UsersController < ApplicationController
       chartUrl: '',
     }
 
-    html = open(url) do |f|
+    html = open('https://mail.google.com/') do |f|
       charset = f.charset
       f.read
     end
