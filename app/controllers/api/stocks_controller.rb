@@ -1,9 +1,46 @@
 class Api::StocksController < ApplicationController
-  
-  require 'open-uri'
+  before_action :set_stock, only: [:show, :update, :destroy]
 
-  # GET /stocks?code=xxx
+  # GET /api/stocks
   def index
+    @stocks = stock.all
+    render json: @stocks
+  end
+
+  # GET /api/stocks/1
+  def show
+    render json: @stock
+  end
+
+  # POST /api/stocks
+  def create
+    @stock = stock.new(stock_params)
+
+    if @stock.save
+      render json: @stock, status: :created, location: @stock
+    else
+      render json: @stock.errors, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT /api/stocks/1
+  def update
+    if @stock.update(stock_params)
+      render json: @stock
+    else
+      render json: @stock.errors, status: :unprocessable_entity
+    end
+  end
+
+  # DELETE /api/stocks/1
+  def destroy
+    @stock.destroy
+  end
+
+  # GET /api/stocks/search?code=xxx
+  def search
+
+    require 'open-uri'
 
     charset = nil
     stock_info = {}
@@ -41,4 +78,16 @@ class Api::StocksController < ApplicationController
     end
 
   end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_stock
+      @stock = stock.find(params[:id])
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def stock_params
+      params.require(:stock).permit(:name)
+    end
+
 end

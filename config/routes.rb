@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :api, format: 'json' do
-    get '/stocks', to: 'stocks#index'
+    resources :stocks do
+      collection do
+        get 'search', to: 'stocks#search'
+      end
+    end
+   
   end
 end
