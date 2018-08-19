@@ -3,50 +3,9 @@ class Api::StocksController < ApplicationController
 
   # GET /api/stocks
   def index
-<<<<<<< HEAD
     @stocks = Stock.all
     render json: @stocks
   end
-=======
-    @stocks = stock.all
-    render json: @stocks
-  end
-
-  # GET /api/stocks/1
-  def show
-    render json: @stock
-  end
-
-  # POST /api/stocks
-  def create
-    @stock = stock.new(stock_params)
-
-    if @stock.save
-      render json: @stock, status: :created, location: @stock
-    else
-      render json: @stock.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /api/stocks/1
-  def update
-    if @stock.update(stock_params)
-      render json: @stock
-    else
-      render json: @stock.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /api/stocks/1
-  def destroy
-    @stock.destroy
-  end
-
-  # GET /api/stocks/search?code=xxx
-  def search
-
-    require 'open-uri'
->>>>>>> 4152801b53f89e3ab1043c7c074a154530b67809
 
   # GET /api/stocks/1
   def show
@@ -112,16 +71,11 @@ class Api::StocksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_stock
-<<<<<<< HEAD
       @stock = Stock.find(params[:id])
-=======
-      @stock = stock.find(params[:id])
->>>>>>> 4152801b53f89e3ab1043c7c074a154530b67809
     end
 
     # Only allow a trusted parameter "white list" through.
     def stock_params
-<<<<<<< HEAD
       params.require(:stock).permit(:code, :name)
     end
 
@@ -195,9 +149,6 @@ class Api::StocksController < ApplicationController
       rescue => e
         return { error: 'エラー発生しました'}
       end
-=======
-      params.require(:stock).permit(:name)
->>>>>>> 4152801b53f89e3ab1043c7c074a154530b67809
     end
 
 end
