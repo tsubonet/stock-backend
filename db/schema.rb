@@ -14,7 +14,11 @@ ActiveRecord::Schema.define(version: 2018_08_18_123624) do
 
   create_table "stocks", force: :cascade do |t|
     t.integer "code"
+<<<<<<< HEAD
     t.string "name"
+=======
+    t.string "company_name"
+>>>>>>> 4152801b53f89e3ab1043c7c074a154530b67809
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
